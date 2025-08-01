@@ -23,7 +23,7 @@ Built using React for the frontend and Node.js with Express for the backend, and
 ## Project Structure
 
 ```
-/AZURE
+/travel planner bot
 ├── frontend/
 │   ├── public/
 │   └── src/
