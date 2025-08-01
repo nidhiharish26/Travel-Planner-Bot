@@ -11,123 +11,183 @@ Built using React for the frontend and Node.js with Express for the backend, and
 
 ## Features
 
-- Structured mode with day/city input
-- Prompt mode with free-form travel text
-- Center-aligned, responsive UI with a pastel yellow theme
-- Travel plan displayed in formatted cards (one per day)
-- Error handling for vague inputs
-- Loading indicator for smoother UX
-- Uses Azure OpenAI GPT model (`gpt-4o`)
-- Backend returns clean JSON structure
-- Toggle between Structured and Prompt modes
+- Supports both natural language input and structured planning
+- Dynamic UI with pastel yellow theme (fully responsive)
+- Displays one day per card using clean formatting
+- Handles vague prompts with friendly error messages
+- Fully integrated with Azure OpenAI (via GPT-4o)
+- JSON-based output parsing with error handling
 
 ---
 
-## Getting Started
+## Project Structure
 
-### Prerequisites
-
-- Node.js and npm
-- Azure OpenAI access (API key + deployment)
-
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/ai-travel-planner.git
-   cd ai-travel-planner
-   ```
-
-2. Install dependencies for both frontend and backend:
-
-   ```bash
-   cd server
-   npm install
-
-   cd ../client
-   npm install
-   ```
-
-3. Create `.env` file in the `/server` folder with the following values:
-
-   ```env
-   AZURE_API_KEY=your_azure_openai_api_key
-   AZURE_RESOURCE_NAME=your_resource_name
-   AZURE_DEPLOYMENT_NAME=gpt-4o
-   AZURE_API_VERSION=2024-12-01-preview
-   ```
-
-4. Start the backend:
-
-   ```bash
-   cd server
-   node server.js
-   ```
-
-5. Start the frontend:
-
-   ```bash
-   cd ../client
-   npm start
-   ```
-
-The app will run at `http://localhost:3000` and connect to the backend on `http://localhost:5000`.
-
----
-
-## API Routes
-
-### POST `/api/travel` (Structured Mode)
-**Body:**
-```json
-{
-  "days": 7,
-  "cities": ["Paris", "Rome"]
-}
 ```
-
-### POST `/api/prompt` (Prompt Mode)
-**Body:**
-```json
-{
-  "prompt": "Plan a 5-day trip to Goa with adventure and food"
-}
+/AZURE
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── pages/
+│       │   ├── promptPlanner.js         # Prompt-based planner component
+│       │   └── travelPlanner.js         # Structured planner component
+│       ├── App.js                       # Route toggler between modes
+│       ├── App.css
+│       ├── index.js
+│       └── index.css                    # Tailwind + custom styles
+│   ├── package.json
+│   ├── postcss.config.js
+│   └── tailwind.config.js
+├── server.js                            # Express backend server
+├── .env                                 # Azure API config
+├── package.json                         # Root-level server dependencies
+└── README.md
 ```
-
-Both routes return a structured JSON with `trip.itinerary.day_1`, `day_2`, etc.
 
 ---
 
 ## Tech Stack
 
-- React + Tailwind CSS
-- Node.js + Express
-- Axios for API calls
-- Azure OpenAI GPT-4o API
-- dotenv for environment variables
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Express
+- **AI Integration:** Azure OpenAI (GPT-4o)
+- **Styling:** Pastel yellow theme, centered layout, Tailwind utilities
 
 ---
 
-## Notes
+## Environment Variables
 
-- Prompt mode requires specific city mentions for best results.
-- Vague prompts like "Europe" will return error messages handled by the UI.
-- Backend includes basic error handling for OpenAI failures.
+In the project root (`.env` file):
+
+```env
+AZURE_API_KEY=your_azure_openai_key
+AZURE_RESOURCE_NAME=your_resource_name
+AZURE_DEPLOYMENT_NAME=gpt-4o
+AZURE_API_VERSION=2024-12-01-preview
+```
 
 ---
 
-## Future Enhancements 
+## Installation
 
-- Add export to PDF or download itinerary
-- Save and manage travel plans with login
-- Multi-language support
-- Location-based activity suggestions
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/travel planner bot.git
+cd travel planner bot
+```
+
+### 2. Install Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+### 3. Install Backend
+
+```bash
+cd ..
+npm install
+```
+
+### 4. Start Backend
+
+```bash
+node server.js
+```
+
+Runs on `http://localhost:3000`
+
+### 5. Start Frontend
+
+```bash
+cd frontend
+npm start
+```
+
+Runs on `http://localhost:3001`
+
+---
+
+## API Endpoints
+
+### POST `/api/travel` (Structured Mode)
+
+**Request:**
+```json
+{
+  "days": 5,
+  "cities": ["Paris", "Rome"]
+}
+```
+
+**Response:**
+```json
+{
+  "trip": {
+    "itinerary": {
+      "day_1": "...",
+      "day_2": "..."
+    }
+  }
+}
+```
+
+---
+
+### POST `/api/prompt` (Prompt Mode)
+
+**Request:**
+```json
+{
+  "prompt": "Plan a 4-day trip to Goa with food, beaches and nightlife"
+}
+```
+
+**Response:**
+```json
+{
+  "trip": {
+    "itinerary": {
+      "day_1": "...",
+      "day_2": "..."
+    }
+  }
+}
+```
+
+If the prompt is vague (e.g., just "Europe"), you'll receive:
+```json
+{
+  "error": "Please specify a city or cities in Europe..."
+}
+```
+
+This is displayed to the user in the frontend.
+
+---
+
+## Usage Notes
+
+- Prompt mode requires city names for best results.
+- Both modes return a clean `trip.itinerary` object.
+- Uses GPT-4o via Azure's hosted endpoint.
+- Responsive layout with centered headings and buttons.
+- Cards dynamically render per day of plan.
+
+---
+
+## Future Enhancements
+
+- Save/download trip plans
+- Add auth + user profiles
+- Export to PDF
+- View trips on map
+- Hotel/restaurant recommendations via APIs
 
 ---
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source under the [MIT License](LICENSE).
 
----
