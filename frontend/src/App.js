@@ -12,7 +12,13 @@ function App() {
       <Toaster richColors />
 
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-yellow-800 mb-6 text-center">
+        <h1
+          className="text-5xl font-bold mb-6 text-center"
+          style={{
+            fontFamily: "'Pacifico', cursive",
+            color: "#8B4513", // SaddleBrown
+          }}
+        >
           Travel Planner Bot
         </h1>
 
