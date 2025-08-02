@@ -98,7 +98,7 @@ function PromptPlanner() {
     <div className="px-4 py-6 max-w-2xl mx-auto">
       <Toaster richColors />
 
-      <div className="bg-white rounded-xl shadow-md p-6">
+      <div className="bg-white/60 rounded-xl shadow-md p-6">
         <div className="text-center mb-4">
           <h3 className="text-2xl font-bold text-yellow-800 mb-2">
             Prompt Mode
@@ -153,4 +153,5 @@ function PromptPlanner() {
 }
 
 export default PromptPlanner;
+
 
