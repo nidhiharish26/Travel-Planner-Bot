@@ -99,7 +99,7 @@ function App() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6">
+    <div className="bg-white/60 rounded-xl shadow-md p-6">
       <div className="text-center mb-4">
         <h3 className="text-2xl font-bold text-yellow-800">
           Structured Mode
@@ -169,4 +169,5 @@ function App() {
 }
 
 export default App;
+
 
