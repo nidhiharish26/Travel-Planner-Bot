@@ -11,7 +11,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-400 text-gray-900 px-4 py-10">
       <Toaster richColors />
 
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+      <div className="max-w-3xl mx-auto bg-white/60 rounded-xl shadow-lg p-8">
         <h1
           className="text-5xl font-bold mb-6 text-center"
           style={{
