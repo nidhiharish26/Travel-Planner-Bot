@@ -8,7 +8,7 @@ function App() {
   const [mode, setMode] = useState("structured"); // 'prompt' or 'structured'
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-yellow-200 text-gray-900 px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-400 text-gray-900 px-4 py-10">
       <Toaster richColors />
 
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
